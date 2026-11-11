@@ -17,7 +17,8 @@ export default defineConfig({
         tailwindcss(),
     ],
     server: {
-        allowedHosts: ['.vercel.run'],
+        host: true,
+        allowedHosts: true,
         watch: {
             ignored: ['**/storage/framework/views/**'],
         },
