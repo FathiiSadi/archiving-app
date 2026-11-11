@@ -25,6 +25,8 @@
         "APP_SERVICES_CACHE": "/tmp/services.php",
         "VIEW_COMPILED_PATH": "/tmp/views",
         "LOG_CHANNEL": "stderr",
+        "DB_SSLMODE": "require",
+        "DB_EMULATE_PREPARES": "true",
         "CACHE_STORE": "database",
         "KPI_CACHE_STORE": "database",
         "SESSION_DRIVER": "database",
