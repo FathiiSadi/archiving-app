@@ -1,0 +1,202 @@
+@import '../../../../vendor/filament/filament/resources/css/theme.css';
+
+@source '../../../../app/Filament/**/*';
+@source '../../../../resources/views/filament/**/*';
+@source '../../../../resources/views/components/filament/**/*';
+
+/*
+ * أرشيف دال — panel theme.
+ * Warm "paper" surfaces, ink-green primary, brass accents, quiet hairlines.
+ * Light-mode overrides only; dark mode keeps Filament's stone palette.
+ */
+
+:root {
+    /* Brand palette */
+    --dal-primary: #00432d;
+    --dal-secondary: #03875a;
+    --dal-accent: #68523b;
+    --dal-neutral: #fffdf2;
+
+    --dal-paper: #f7f3e3;           /* page background, a step deeper than the neutral */
+    --dal-card: var(--dal-neutral);  /* cards and sidebar */
+    --dal-line: rgb(0 67 45 / 0.1);
+    --dal-ink: #10261d;
+    --dal-display: 'DAL Display', 'Alexandria', sans-serif;
+}
+
+/* ---- Surfaces ------------------------------------------------------- */
+html:not(.dark) .fi-body {
+    background-color: var(--dal-paper);
+}
+
+html:not(.dark) .fi-sidebar,
+html:not(.dark) .fi-topbar > nav,
+html:not(.dark) .fi-topbar {
+    background-color: var(--dal-card);
+}
+
+html:not(.dark) .fi-sidebar {
+    border-inline-end: 1px solid var(--dal-line);
+}
+
+html:not(.dark) .fi-section:not(.fi-section-not-contained),
+html:not(.dark) .fi-ta-ctn,
+html:not(.dark) .fi-wi-stats-overview-stat,
+html:not(.dark) .fi-wi-chart .fi-section {
+    background-color: var(--dal-card);
+    box-shadow: 0 1px 0 rgb(0 67 45 / 0.03);
+    --tw-ring-color: var(--dal-line);
+}
+
+/* ---- Typography ----------------------------------------------------- */
+.fi-header-heading,
+.fi-section-header-heading,
+.fi-ta-header-heading,
+.fi-modal-heading,
+.fi-simple-header-heading {
+    font-family: var(--dal-display);
+    letter-spacing: 0;
+}
+
+.fi-header-heading {
+    font-weight: 700;
+}
+
+.fi-wi-stats-overview-stat-value {
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.01em;
+}
+
+.fi-ta-text,
+.fi-ta-cell {
+    font-variant-numeric: tabular-nums;
+}
+
+.fi-sidebar-group-label {
+    letter-spacing: 0.01em;
+}
+
+/* Brass rule above every stats card — a quiet ledger accent. */
+html:not(.dark) .fi-wi-stats-overview-stat {
+    position: relative;
+    overflow: hidden;
+}
+
+html:not(.dark) .fi-wi-stats-overview-stat::before {
+    content: '';
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline-start: 1.5rem;
+    width: 1.75rem;
+    height: 2px;
+    border-radius: 0 0 2px 2px;
+    background: var(--dal-accent);
+    opacity: 0.85;
+}
+
+/* ---- Brand ---------------------------------------------------------- */
+.dal-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    color: var(--color-primary-600);
+}
+
+.dark .dal-brand {
+    color: var(--color-primary-400);
+}
+
+.dal-brand__mark {
+    width: 2.25rem;
+    height: 2.25rem;
+    display: block;
+    flex-shrink: 0;
+}
+
+.dal-brand__text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.15;
+}
+
+.dal-brand__name {
+    font-family: var(--dal-display);
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--dal-ink);
+}
+
+.dark .dal-brand__name {
+    color: #f4efe3;
+}
+
+.dal-brand__sub {
+    font-size: 0.68rem;
+    color: var(--color-gray-500);
+}
+
+/* ---- Sidebar footer ------------------------------------------------- */
+.dal-sidebar-footer {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0.75rem 1rem 1rem;
+    padding: 0.6rem 0.8rem;
+    border: 1px solid var(--dal-line);
+    border-radius: 0.6rem;
+    font-size: 0.75rem;
+    color: var(--color-gray-600);
+}
+
+.dark .dal-sidebar-footer {
+    border-color: rgb(255 255 255 / 0.08);
+    color: var(--color-gray-400);
+}
+
+.dal-sidebar-footer__dot {
+    width: 0.4rem;
+    height: 0.4rem;
+    border-radius: 999px;
+    background: var(--dal-accent);
+}
+
+/* ---- Login screen --------------------------------------------------- */
+html:not(.dark) .fi-simple-layout {
+    background-color: var(--dal-paper);
+    background-image: repeating-linear-gradient(
+        to bottom,
+        transparent 0,
+        transparent 43px,
+        rgb(0 67 45 / 0.05) 43px,
+        rgb(0 67 45 / 0.05) 44px
+    );
+}
+
+html:not(.dark) .fi-simple-main {
+    background-color: var(--dal-card);
+    box-shadow: 0 24px 48px -28px rgb(0 67 45 / 0.35);
+}
+
+/* ---- Google Drive preview ------------------------------------------ */
+.dal-drive-preview iframe {
+    width: 100%;
+    height: min(70vh, 640px);
+    border: 1px solid var(--dal-line);
+    border-radius: 0.75rem;
+    background: var(--dal-paper);
+}
+
+.dal-drive-preview__footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+    font-size: 0.8rem;
+    color: var(--color-gray-500);
+}
+
+.dal-drive-preview__footer a {
+    color: var(--color-primary-600);
+    font-weight: 500;
+}

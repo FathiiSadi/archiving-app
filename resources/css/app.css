@@ -1,0 +1,101 @@
+@import 'tailwindcss';
+
+@source '../js/**/*.vue';
+@source '../views/**/*.blade.php';
+
+@theme {
+    /* Body: Alexandria (خط الإسكندرية). Headings: Thmanyah (خط ثمانية) via 'DAL Display'. Both self-hosted in /public/fonts. */
+    --font-sans: 'Alexandria', ui-sans-serif, system-ui, sans-serif;
+    --font-display: 'DAL Display', 'Alexandria', sans-serif;
+
+    /* Brand palette — primary #00432D · secondary #03875A · accent #68523B · neutral #FFFDF2 */
+    --color-paper: #fffdf2;          /* neutral */
+    --color-paper-deep: #f3eedb;
+    --color-card: #ffffff;
+    --color-ink: #10261d;
+    --color-ink-soft: #4a5a52;
+    --color-ink-faint: #7b867f;
+    --color-forest: #00432d;         /* primary */
+    --color-forest-deep: #002c1e;
+    --color-mint: #03875a;           /* secondary */
+    --color-brass: #68523b;          /* accent */
+    --color-brass-soft: #e7dccb;
+    --color-clay: #b4413a;
+    --color-line: rgb(0 67 45 / 0.12);
+}
+
+@layer base {
+    html {
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+    }
+
+    body {
+        background: var(--color-paper);
+        color: var(--color-ink);
+        font-family: var(--font-sans);
+    }
+
+    ::selection {
+        background: var(--color-brass-soft);
+        color: var(--color-ink);
+    }
+
+    :focus-visible {
+        outline: 2px solid var(--color-brass);
+        outline-offset: 3px;
+        border-radius: 6px;
+    }
+}
+
+@layer components {
+    .container-page {
+        width: 100%;
+        max-width: 72rem;
+        margin-inline: auto;
+        padding-inline: 1rem;
+    }
+
+    @media (min-width: 640px) {
+        .container-page {
+            padding-inline: 1.5rem;
+        }
+    }
+
+    /* Faint horizontal rules, like a register page. */
+    .ledger-lines {
+        background-image: repeating-linear-gradient(
+            to bottom,
+            transparent 0,
+            transparent 43px,
+            rgb(0 67 45 / 0.06) 43px,
+            rgb(0 67 45 / 0.06) 44px
+        );
+    }
+
+    .numeral {
+        font-variant-numeric: tabular-nums;
+        font-feature-settings: 'tnum';
+    }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .reveal {
+        animation: reveal 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+    }
+
+    .bar-fill {
+        animation: bar-grow 1.1s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+        transform-origin: right;
+    }
+}
+
+@keyframes reveal {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: none; }
+}
+
+@keyframes bar-grow {
+    from { transform: scaleX(0); }
+    to { transform: scaleX(1); }
+}
