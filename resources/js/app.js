@@ -2,7 +2,8 @@ import { createApp, h } from 'vue';
 import { createInertiaApp } from '@inertiajs/vue3';
 
 createInertiaApp({
-    title: (title) => (title ? `${title} · أرشيف دال` : 'أرشيف دال'),
+    // The public company page names itself; portal pages carry the أرشيف دال suffix.
+    title: (title) => (!title ? 'أرشيف دال' : title === 'Archiving App' ? title : `${title} · أرشيف دال`),
     resolve: (name) => {
         const pages = import.meta.glob('./Pages/**/*.vue', { eager: true });
         return pages[`./Pages/${name}.vue`];

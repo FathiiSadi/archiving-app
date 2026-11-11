@@ -3,9 +3,9 @@
 namespace App\Providers\Filament;
 
 use App\Filament\Pages\Auth\EditProfile;
-use App\Http\Middleware\SecurityHeaders;
 use App\Filament\Pages\Auth\Login;
 use App\Filament\Pages\Dashboard;
+use App\Http\Middleware\SecurityHeaders;
 use Filament\FontProviders\LocalFontProvider;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
@@ -35,7 +35,8 @@ class AdminPanelProvider extends PanelProvider
             ->path('panel')
             ->login(Login::class)
             ->profile(EditProfile::class)
-            ->brandName('أرشيف دال')
+            // Sign-in and password-reset pages belong to the Archiving App company, not to Dal.
+            ->brandName(fn () => request()->routeIs('filament.admin.auth.*') ? 'Archiving App' : 'أرشيف دال')
             ->brandLogo(fn () => view('filament.brand'))
             ->brandLogoHeight('2.25rem')
             ->favicon(asset('favicon.png'))

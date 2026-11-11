@@ -22,6 +22,18 @@
     --color-brass-soft: #e7dccb;
     --color-clay: #b4413a;
     --color-line: rgb(0 67 45 / 0.12);
+
+    /* Archiving App (company page): archive-box grey, navy ink, red tape, manila folders. */
+    --color-board: #e9ecef;
+    --color-sheet: #ffffff;
+    --color-navy: #1a2233;
+    --color-navy-soft: #4f5a6e;
+    --color-navy-faint: #8590a2;
+    --color-tape: #8c1c2b;
+    --color-tape-deep: #6c1420;
+    --color-manila: #ebcb85;
+    --color-manila-soft: #f6e8c4;
+    --color-rule: rgb(26 34 51 / 0.12);
 }
 
 @layer base {

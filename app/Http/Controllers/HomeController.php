@@ -20,6 +20,14 @@ class HomeController extends Controller
 {
     public function __invoke(): Response
     {
+        // Visitors see the Archiving App company page; signed-in users see the portal.
+        if (! auth()->check()) {
+            return Inertia::render('Landing', [
+                'loginUrl' => Filament::getPanel('admin')->getLoginUrl(),
+                'contactEmail' => config('app.contact_email'),
+            ]);
+        }
+
         $semester = Semester::current();
 
         $snapshot = $semester

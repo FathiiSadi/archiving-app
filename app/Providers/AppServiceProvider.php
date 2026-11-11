@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Http\Responses\LoginResponse;
 use App\Models\Contracts\SettingsRecord;
 use App\Models\Contracts\TeamOwned;
 use App\Models\User;
@@ -19,7 +20,7 @@ class AppServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
-        //
+        $this->app->singleton(\Filament\Auth\Http\Responses\Contracts\LoginResponse::class, LoginResponse::class);
     }
 
     public function boot(): void

@@ -160,21 +160,49 @@ html:not(.dark) .fi-wi-stats-overview-stat::before {
     background: var(--dal-accent);
 }
 
-/* ---- Login screen --------------------------------------------------- */
+/* ---- Login screen ---------------------------------------------------
+ * Sign-in is reached from the Archiving App company page, so it uses the company palette
+ * (archive-box grey, navy ink, red-tape buttons), not Dal's.
+ */
+.fi-simple-layout {
+    --primary-50: #fbeef0;
+    --color-primary-50: #fbeef0;
+    --primary-100: #f5d6db;
+    --color-primary-100: #f5d6db;
+    --primary-200: #e9aab4;
+    --color-primary-200: #e9aab4;
+    --primary-300: #d77887;
+    --color-primary-300: #d77887;
+    --primary-400: #bd4558;
+    --color-primary-400: #bd4558;
+    --primary-500: #a32a3c;
+    --color-primary-500: #a32a3c;
+    --primary-600: #8c1c2b;
+    --color-primary-600: #8c1c2b;
+    --primary-700: #6c1420;
+    --color-primary-700: #6c1420;
+    --primary-800: #520f18;
+    --color-primary-800: #520f18;
+    --primary-900: #3d0b12;
+    --color-primary-900: #3d0b12;
+    --primary-950: #24060a;
+    --color-primary-950: #24060a;
+}
+
 html:not(.dark) .fi-simple-layout {
-    background-color: var(--dal-paper);
-    background-image: repeating-linear-gradient(
-        to bottom,
-        transparent 0,
-        transparent 43px,
-        rgb(0 67 45 / 0.05) 43px,
-        rgb(0 67 45 / 0.05) 44px
-    );
+    background-color: #e9ecef;
 }
 
 html:not(.dark) .fi-simple-main {
-    background-color: var(--dal-card);
-    box-shadow: 0 24px 48px -28px rgb(0 67 45 / 0.35);
+    background-color: #ffffff;
+    border-top: 6px solid #8c1c2b;
+    box-shadow: 0 0 0 1px rgb(26 34 51 / 0.08), 0 28px 56px -34px rgb(26 34 51 / 0.45);
+}
+
+html:not(.dark) .fi-simple-header-heading {
+    color: #1a2233;
+    font-family: 'Alexandria', sans-serif;
+    font-weight: 800;
 }
 
 /* ---- Google Drive preview ------------------------------------------ */

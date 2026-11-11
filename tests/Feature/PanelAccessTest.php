@@ -9,6 +9,7 @@ use App\Models\QuranCircle;
 use App\Models\TajweedSection;
 use App\Models\User;
 use Database\Seeders\DemoSeeder;
+use Filament\Auth\Http\Responses\Contracts\LoginResponse;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
@@ -50,6 +51,30 @@ class PanelAccessTest extends TestCase
         $response->assertSee('أرشيف دال');
         $response->assertDontSee('د.أ');
         $response->assertDontSee('079');
+    }
+
+    public function test_visitors_see_the_company_page_and_signed_in_users_see_the_portal(): void
+    {
+        $this->get('/')->assertInertia(fn ($page) => $page->component('Landing')->missing('snapshot'));
+
+        $this->as(UserRole::Admin);
+        $this->get('/')->assertInertia(fn ($page) => $page->component('Home')->has('snapshot'));
+    }
+
+    public function test_signing_in_lands_on_the_portal_home_page(): void
+    {
+        $response = app(LoginResponse::class)->toResponse(request());
+
+        $this->assertSame(route('home'), $response->getTargetUrl());
+    }
+
+    public function test_login_page_shows_no_dal_branding(): void
+    {
+        $this->get('/panel/login')
+            ->assertOk()
+            ->assertSee('Archiving App')
+            ->assertDontSee('dal-logo.png')
+            ->assertDontSee('أرشيف دال');
     }
 
     public function test_admin_and_management_see_every_page_and_dashboard(): void
