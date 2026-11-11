@@ -1,0 +1,32 @@
+{
+    "$schema": "https://openapi.vercel.sh/vercel.json",
+    "framework": null,
+    "installCommand": "echo 'Composer runs inside the PHP function build; npm assets are prebuilt'",
+    "buildCommand": "echo 'Assets are prebuilt: run npm run build && php artisan filament:assets before pushing'",
+    "outputDirectory": "public",
+    "functions": {
+        "api/index.php": {
+            "runtime": "vercel-php@0.7.4",
+            "maxDuration": 30,
+            "excludeFiles": "{.git/**,node_modules/**,tests/**,storage/app/**,storage/logs/**}"
+        }
+    },
+    "routes": [
+        { "src": "/index\\.php", "dest": "/api/index.php" },
+        { "handle": "filesystem" },
+        { "src": "/(.*)", "dest": "/api/index.php" }
+    ],
+    "env": {
+        "APP_CONFIG_CACHE": "/tmp/config.php",
+        "APP_EVENTS_CACHE": "/tmp/events.php",
+        "APP_PACKAGES_CACHE": "/tmp/packages.php",
+        "APP_ROUTES_CACHE": "/tmp/routes.php",
+        "APP_SERVICES_CACHE": "/tmp/services.php",
+        "VIEW_COMPILED_PATH": "/tmp/views",
+        "LOG_CHANNEL": "stderr",
+        "CACHE_STORE": "database",
+        "KPI_CACHE_STORE": "database",
+        "SESSION_DRIVER": "database",
+        "QUEUE_CONNECTION": "sync"
+    }
+}
